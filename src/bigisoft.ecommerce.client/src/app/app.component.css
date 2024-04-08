@@ -1,0 +1,13 @@
+:host {
+    max-width: 1280px;
+}
+
+th, td {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+table {
+  width: 100%;
+  margin: 0 auto;
+}

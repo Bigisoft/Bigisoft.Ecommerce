@@ -1,0 +1,24 @@
+<mat-grid-list cols="4" rowHeight="100px">
+    @for (tile of tiles; track tile) {
+    <mat-grid-tile [colspan]="tile.cols"
+                   [rowspan]="tile.rows"
+                   [style.background]="tile.color">{{tile.text}}</mat-grid-tile>
+    }
+</mat-grid-list>
+
+
+<br />
+<mat-form-field>
+    <mat-label>Message</mat-label>
+    <input matInput value="Disco party!" #message>
+</mat-form-field>
+
+<mat-form-field>
+    <mat-label>Action</mat-label>
+    <input matInput value="Dance" #action>
+</mat-form-field>
+
+<button mat-stroked-button (click)="openSnackBar(message.value, action.value)">Show snack-bar</button>
+
+<br />
+<mat-spinner></mat-spinner>

@@ -1,0 +1,49 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Programming\\CSHARP\\Bigisoft.Ecommerce\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{63C704BB-CC32-43D2-8AD1-438372825A2F}|src\\Bigisoft.Ecommerce.Server\\Bigisoft.Ecommerce.Server.csproj|d:\\programming\\csharp\\bigisoft.ecommerce\\src\\bigisoft.ecommerce.server\\features\\product\\application\\queries\\allproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63C704BB-CC32-43D2-8AD1-438372825A2F}|src\\Bigisoft.Ecommerce.Server\\Bigisoft.Ecommerce.Server.csproj|solutionrelative:src\\bigisoft.ecommerce.server\\features\\product\\application\\queries\\allproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{2c59525e-9c14-4bfd-bc18-3a5ae7eb7dbd}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AllProducts.cs",
+              "DocumentMoniker": "D:\\Programming\\CSHARP\\Bigisoft.Ecommerce\\src\\Bigisoft.Ecommerce.Server\\Features\\Product\\Application\\Queries\\AllProducts.cs",
+              "RelativeDocumentMoniker": "src\\Bigisoft.Ecommerce.Server\\Features\\Product\\Application\\Queries\\AllProducts.cs",
+              "ToolTip": "D:\\Programming\\CSHARP\\Bigisoft.Ecommerce\\src\\Bigisoft.Ecommerce.Server\\Features\\Product\\Application\\Queries\\AllProducts.cs",
+              "RelativeToolTip": "src\\Bigisoft.Ecommerce.Server\\Features\\Product\\Application\\Queries\\AllProducts.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-08T18:02:40.297Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
