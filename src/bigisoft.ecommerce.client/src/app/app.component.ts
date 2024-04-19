@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NgIf, NgFor } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
-import { MatCommonModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { GridComponent } from './grid/grid.component';
+import { NgFor, NgIf } from '@angular/common';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { SharedService } from './shared.service';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 interface WeatherForecast {
   date: string;
@@ -14,35 +17,14 @@ interface WeatherForecast {
 }
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css',
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
   standalone: true,
-  imports: [NgIf, NgFor, HeaderComponent, MatTableModule, GridComponent]
+  imports: [RouterModule, NgIf, NgFor, HeaderComponent, SidenavComponent]
 })
 
-export class AppComponent implements OnInit {
-  public forecasts: WeatherForecast[] = [];
-  dataSource: WeatherForecast[] = [];
+export class AppComponent
+{
 
-  constructor(private http: HttpClient) {}
-
-  ngOnInit() {
-    this.getForecasts();
-  }
-
-  getForecasts() {
-    this.http.get<WeatherForecast[]>('/weatherforecast').subscribe(
-      (result) => {
-        this.forecasts = result;
-        this.dataSource = result;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
-  displayedColumns: string[] = ['date', 'temperatureC', 'temperatureF', 'summary'];
-  title = 'bigisoft.ecommerce.client';
 }

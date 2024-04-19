@@ -12,3 +12,6 @@
 12. Order
 13. Order_Details  (maybe)
 14. Coupon (maybe)
+
+
+To use RabbitMQ or some kind of Message Bus

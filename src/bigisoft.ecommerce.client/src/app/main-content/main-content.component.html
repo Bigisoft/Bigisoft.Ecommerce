@@ -1,0 +1,11 @@
+<div style="padding: 15px">
+  <app-breadcrumb></app-breadcrumb>
+  <br><br>
+  <ng-container *ngIf="!isIndexPage">
+    <router-outlet></router-outlet>
+  </ng-container>
+
+  <ng-container *ngIf="isIndexPage">
+    <app-home></app-home>
+  </ng-container>
+</div>

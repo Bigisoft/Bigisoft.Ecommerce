@@ -2,9 +2,9 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "type": "chrome",
       "request": "launch",
-      "name": "localhost (Firefox)",
+      "name": "localhost (Chrome)",
       "url": "https://localhost:4200",
       "webRoot": "${workspaceFolder}"
     },
@@ -12,13 +12,6 @@
       "type": "edge",
       "request": "launch",
       "name": "localhost (Edge)",
-      "url": "https://localhost:4200",
-      "webRoot": "${workspaceFolder}"
-    },
-    {
-      "type": "chrome",
-      "request": "launch",
-      "name": "localhost (Chrome)",
       "url": "https://localhost:4200",
       "webRoot": "${workspaceFolder}"
     }

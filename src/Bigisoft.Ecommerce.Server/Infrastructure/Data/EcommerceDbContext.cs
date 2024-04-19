@@ -1,4 +1,4 @@
-using Bigisoft.Ecommerce.Server.Features.Products.Domain.Entities;
+using Bigisoft.Ecommerce.Server.Features.Products;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bigisoft.Ecommerce.Server.Infrastructure.Data;

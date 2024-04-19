@@ -1,5 +1,8 @@
 using Bigisoft.Ecommerce.Server.Infrastructure.Data;
+using Bigisoft.Ecommerce.Server.Infrastructure.Middlewares;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,9 +11,12 @@ builder.Services.AddDbContext<EcommerceDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
 var app = builder.Build();
 
@@ -26,10 +32,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
-
 app.MapFallbackToFile("/index.html");
 
 app.Run();

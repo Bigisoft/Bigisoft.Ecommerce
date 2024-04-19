@@ -1,6 +1,20 @@
-@Bigisoft.Ecommerce.Server_HostAddress = http://localhost:5025
+@server_url = http://localhost:5025
 
-GET {{Bigisoft.Ecommerce.Server_HostAddress}}/weatherforecast/
+GET {{server_url}}/weatherforecast/
 Accept: application/json
+
+###
+
+GET {{server_url}}/api/products/
+Accept: application/json
+
+###
+
+POST {{server_url}}/api/products/
+Content-Type: application/json
+
+{
+    "name": "just an .http file test"
+}
 
 ###
