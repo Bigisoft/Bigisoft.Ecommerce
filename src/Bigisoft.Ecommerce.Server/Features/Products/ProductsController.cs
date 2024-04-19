@@ -33,17 +33,52 @@ public class ProductsController(IMediator mediator) : ControllerBase
     {
         try
         {
-            // Call your service or repository to create a new product
-            // You can access the request data from the ProductsControllerRequest object
-            // For example, request.Name, request.Price, etc.
             var product = await mediator.Send(new CreateProductCommand(request.Name));
-
-            // Return a success response
             return Ok(product);
         }
         catch (Exception ex)
         {
-            // Handle any exceptions and return an error response
+            return StatusCode(500, $"An error occurred: {ex.Message}");
+        }
+    }
+
+    [HttpPut("id")]
+    public async Task<ActionResult<bool>> Update(UpdateProductCommand request)
+    {
+        try
+        {
+            var product = await mediator.Send(request);
+
+            if (!product)
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occurred: {ex.Message}");
+        }
+    }
+
+    [HttpDelete("id")]
+    public async Task<ActionResult<bool>> Delete(int id)
+    {
+        try
+        {
+            var command = new DeleteProductCommand(id);
+            var product = await mediator.Send(command);
+            if (!product)
+            {
+                return NotFound();
+            }
+
+            // Return a success response
+            return NoContent();
+        }
+        catch (Exception ex)
+        {
             return StatusCode(500, $"An error occurred: {ex.Message}");
         }
     }

@@ -5,7 +5,7 @@ namespace Bigisoft.Ecommerce.Server.Features.Products.Commands;
 
 public sealed record CreateProductCommand(string Name) : IRequest<int>;
 
-public sealed class ProductCommandHandler(EcommerceDbContext context) : IRequestHandler<CreateProductCommand, int>
+public sealed class CreateProductCommandHandler(EcommerceDbContext context) : IRequestHandler<CreateProductCommand, int>
 {
     public async Task<int> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
