@@ -19,6 +19,6 @@ export class MainContentComponent{
   constructor(private router: Router) {}
 
   get isIndexPage(): boolean {
-    return this.router.url === '/home';
+    return this.router.url === '/dashboard';
   }
 }

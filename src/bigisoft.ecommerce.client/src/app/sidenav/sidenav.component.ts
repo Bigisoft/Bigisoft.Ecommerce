@@ -20,17 +20,6 @@ import { RouterModule } from '@angular/router';
 export class SidenavComponent implements OnDestroy {
   @ViewChild('snav') snav!: MatSidenav;
   mobileQuery: MediaQueryList;
-
-  fillerNav = Array.from({length: 5}, (_, i) => `Nav Item ${i + 1}`);
-  fillerContent = Array.from(
-    {length: 5},
-    () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-  );
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private sharedService: SharedService) {
@@ -55,6 +44,4 @@ export class SidenavComponent implements OnDestroy {
       this.mobileQuery.removeListener(this._mobileQueryListener);
     }
   }
-
-  shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);
 }

@@ -42,14 +42,14 @@ public class ProductsController(IMediator mediator) : ControllerBase
         }
     }
 
-    [HttpPut("id")]
-    public async Task<ActionResult<bool>> Update(UpdateProductCommand request)
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Product>> Update(UpdateProductCommand request)
     {
         try
         {
             var product = await mediator.Send(request);
 
-            if (!product)
+            if (product is null)
             {
                 return NotFound();
             }
@@ -62,7 +62,7 @@ public class ProductsController(IMediator mediator) : ControllerBase
         }
     }
 
-    [HttpDelete("id")]
+    [HttpDelete("{id}")]
     public async Task<ActionResult<bool>> Delete(int id)
     {
         try

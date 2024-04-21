@@ -2,6 +2,7 @@ import { NgIf, NgFor } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
+import { RouterModule } from '@angular/router';
 
 interface Product {
   id: number,
@@ -13,7 +14,7 @@ interface Product {
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
   standalone: true,
-  imports: [NgIf, NgFor, MatTableModule]
+  imports: [RouterModule, NgIf, NgFor, MatTableModule]
 })
 export class ProductsComponent implements OnInit {
   public products: Product[] = [];
@@ -38,5 +39,5 @@ export class ProductsComponent implements OnInit {
   }
 
 
-  displayedColumns: string[] = ['id', 'name'];
+  displayedColumns: string[] = ['id', 'name', 'update', 'delete'];
 }

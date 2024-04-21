@@ -16,11 +16,12 @@ interface Breadcrumbs {
   styleUrl: './breadcrumbs.component.css',
   template: `
     <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = last">
-      <ng-container *ngIf="breadcrumb.url !== '/home'">
-        <a routerLink="/">Home</a> /
+      <ng-container *ngIf="breadcrumb.url !== '/dashboard'">
+        <a routerLink="/dashboard">Dashboard</a> /
       </ng-container>
 
-      <a routerLink="[breadcrumb.url]">{{ breadcrumb.label }}</a>
+      <a [routerLink]="[breadcrumb.url]">{{ breadcrumb.label }}</a>
+
       <span *ngIf="!last"> / </span>
     </ng-container>
   `,
