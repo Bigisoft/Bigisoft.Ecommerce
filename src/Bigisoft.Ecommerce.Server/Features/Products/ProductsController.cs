@@ -42,7 +42,7 @@ public class ProductsController(IMediator mediator) : ControllerBase
         }
     }
 
-    [HttpPut("{id}")]
+    [HttpPut]
     public async Task<ActionResult<Product>> Update(UpdateProductCommand request)
     {
         try

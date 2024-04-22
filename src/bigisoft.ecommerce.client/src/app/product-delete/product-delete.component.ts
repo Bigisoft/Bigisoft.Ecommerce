@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-product-delete',
@@ -38,7 +38,7 @@ export class ProductDeleteComponent implements OnInit {
 
   onDelete(id: number) {
     this.http.delete(`/api/products/${id}`).subscribe({
-      next: (result) => {
+      next: () => {
         this.SuccessfulDeleteSnackComponent();
         console.log('Delete request sent successfully');
         this.router.navigate(['/products']);

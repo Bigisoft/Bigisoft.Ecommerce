@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 interface Product {
   name: string;
@@ -19,7 +20,7 @@ interface Product {
 })
 export class ProductCreateComponent implements OnInit {
   durationInSeconds = 5;
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private router: Router) {}
 
   SuccessfulSubmitOpenSnackBar() {
     this._snackBar.openFromComponent(SuccessfulSubmitSnackComponent, {
@@ -43,10 +44,12 @@ export class ProductCreateComponent implements OnInit {
         this.SuccessfulSubmitOpenSnackBar();
         console.log('Form data sent successfully');
         form.resetForm();
+        this.router.navigate(['/products']);
       },
       error: (error) => {
         this.ErrorSubmitOpenSnackBar();
         console.error(error);
+        this.router.navigate(['/products']);
       }
     });
   }

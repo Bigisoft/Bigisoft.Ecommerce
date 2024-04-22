@@ -1,3 +1,7 @@
+
+<a mat-raised-button routerLink="/add-product/">Add product</a>
+
+<br><br><mat-divider></mat-divider><br>
 <p *ngIf="!products"><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="products">
 
@@ -17,13 +21,13 @@
 
   <!-- Update btn Column -->
   <ng-container matColumnDef="update">
-      <th mat-header-cell *matHeaderCellDef>Update</th>
-      <td mat-cell *matCellDef="let element"> update </td>
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element"> <a mat-raised-button routerLink="/update-product/{{element.id}}">Update</a> </td>
   </ng-container>
 
   <!-- Delete btn Column -->
   <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef>Delete</th>
+      <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element"> <a mat-raised-button routerLink="/delete-product/{{element.id}}">Delete</a> </td>
   </ng-container>
 

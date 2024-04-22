@@ -1,6 +1,7 @@
 import { NgIf, NgFor } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 
@@ -14,7 +15,7 @@ interface Product {
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
   standalone: true,
-  imports: [RouterModule, NgIf, NgFor, MatTableModule]
+  imports: [RouterModule, NgIf, NgFor, MatTableModule, MatDividerModule]
 })
 export class ProductsComponent implements OnInit {
   public products: Product[] = [];
