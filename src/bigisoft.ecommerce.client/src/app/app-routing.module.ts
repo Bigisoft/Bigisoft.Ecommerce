@@ -1,20 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductsComponent } from './products/products.component';
-import { AppComponent } from './app.component';
-import { GridComponent } from './grid/grid.component';
-import { ProductCreateComponent } from './product-create/product-create.component';
-import { ProductDeleteComponent } from './product-delete/product-delete.component';
-import { ProductUpdateComponent } from './product-update/product-update.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: AppComponent, data: { breadcrumb: 'Dashboard' }  },
-  { path: 'products', component: ProductsComponent, data: { breadcrumb: 'Products' }  },
-  { path: 'add-product', component: ProductCreateComponent, data: { breadcrumb: 'Add product' }  },
-  { path: 'update-product/:id', component: ProductUpdateComponent, data: { breadcrumb: 'Update product' }  },
-  { path: 'delete-product/:id', component: ProductDeleteComponent, data: { breadcrumb: 'Delete product' }  },
-  { path: 'grids', component: GridComponent, data: { breadcrumb: 'Grids' }  }
+  { path: 'dashboard', loadComponent: () => import('./app.component').then(m => m.AppComponent), data: { breadcrumb: 'Dashboard' } },
+  { path: 'products', loadChildren: () => import('./features/products/products-routing.module').then(m => m.ProductsRoutingModule) },
+  { path: 'grids', loadChildren: () => import('./features/grids/grids-routing.module').then(m => m.GridsRoutingModule) },
+  { path: '**', loadComponent: () => import('./core/page-not-found/page-not-found.component').then(m => m.PageNotFoundComponent), data: { breadcrumb: '404 Error' } },  // Wildcard route for a 404 page
 ];
 
 @NgModule({

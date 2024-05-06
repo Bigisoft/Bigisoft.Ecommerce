@@ -9,7 +9,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 bootstrapApplication(AppComponent, {
     providers: [
         importProvidersFrom(BrowserModule, AppRoutingModule),
-        provideHttpClient(withInterceptorsFromDi()), provideAnimationsAsync()
+        provideHttpClient(withInterceptorsFromDi()),
+        provideAnimationsAsync()
     ]
 })
   .catch(err => console.error(err));

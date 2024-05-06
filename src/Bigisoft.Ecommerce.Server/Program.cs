@@ -29,7 +29,6 @@ builder.Services.AddValidatorsFromAssemblyContaining<ProductValidator>();
 var app = builder.Build();
 
 app.UseDefaultFiles();
-app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -38,11 +37,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
-app.MapFallbackToFile("/index.html");
 
 app.Run();

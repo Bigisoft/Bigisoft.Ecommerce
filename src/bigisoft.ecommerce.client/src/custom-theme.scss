@@ -1,22 +1,43 @@
-
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
+/* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
-// Plus imports for other components in your app.
-
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
+@use 'theme' as theme;
+@use 'variables' as vars;
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$bigisoft-ecommerce-client-primary: mat.define-palette(mat.$purple-palette);
-$bigisoft-ecommerce-client-accent: mat.define-palette(mat.$green-palette, A200, A100, A400);
-$bigisoft-ecommerce-client-warn: mat.define-palette(mat.$red-palette);
+html, body {
+    margin: 0;
+    height: 100%;
+    color: #cecece;
+    font-size: 14px !important;
+}
 
-$bigisoft-ecommerce-client-theme: mat.define-dark-theme(( color: ( primary: $bigisoft-ecommerce-client-primary, accent: $bigisoft-ecommerce-client-accent, warn: $bigisoft-ecommerce-client-warn, ), typography: mat.define-typography-config(), density: 0 ));
+// Apply the dark theme by default
+@include mat.all-component-themes(theme.$dark-theme);
+@include mat.all-component-typographies(theme.$custom-typography);
 
-@include mat.all-component-themes($bigisoft-ecommerce-client-theme);
+// Apply the light theme only when the user prefers light themes.
+@media (prefers-color-scheme: light) {
+  // Use the `-color` mixins to only apply color styles without reapplying the same
+  // typography and density styles.
+  @include mat.all-component-colors(theme.$light-theme);
+}
 
+table {
+  th {
+    background-color: rgba(0,0,0,0.15) !important;
+    color: vars.$primary-color;
+  }
+}
+
+a {
+  & {
+    color: vars.$primary-color;
+    text-shadow: 1px 1px 1px #000;
+    text-decoration: none;
+  }
+  &:hover {
+    color: vars.$accent-color;
+    text-shadow: 1px 1px 2px #000;
+    text-decoration: underline;
+  }
+}

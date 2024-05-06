@@ -14,7 +14,7 @@ public sealed class UpdateProductCommandHandler(EcommerceDbContext context) : IR
         if (product == null) return null;
 
         product.Name = request.Name;
-        context.Products.Update(product);
+        //context.Products.Update(product);
         await context.SaveChangesAsync(cancellationToken);
         return product;
     }

@@ -15,7 +15,7 @@ public class ProductsController(IMediator mediator) : ControllerBase
         return Ok(await mediator.Send(new GetAllProductsQuery()));
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id:int}")]
     public async Task<ActionResult<Product?>> GetById(int id)
     {
         var product = await mediator.Send(new GetAllProductByIdQuery(id));
@@ -62,7 +62,7 @@ public class ProductsController(IMediator mediator) : ControllerBase
         }
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:int}")]
     public async Task<ActionResult<bool>> Delete(int id)
     {
         try

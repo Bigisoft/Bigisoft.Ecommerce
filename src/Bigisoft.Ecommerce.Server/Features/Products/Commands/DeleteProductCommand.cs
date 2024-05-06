@@ -1,4 +1,3 @@
-using Azure.Core;
 using Bigisoft.Ecommerce.Server.Infrastructure.Data;
 using MediatR;
 
@@ -8,13 +7,17 @@ public sealed record DeleteProductCommand(int Id) : IRequest<bool>;
 
 public sealed class DeleteProductCommandHandler(EcommerceDbContext context) : IRequestHandler<DeleteProductCommand, bool>
 {
-    public async Task<bool> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
+    public async Task<bool> Handle(DeleteProductCommand? request, CancellationToken cancellationToken)
     {
-        var product = await context.Products.FindAsync(request.Id);
+        if (request != null)
+        {
+            var product = await context.Products.FindAsync(request.Id, cancellationToken);
         
-        if (product == null) return false;
+            if (product == null) return false;
 
-        context.Products.Remove(product);
+            context.Products.Remove(product);
+        }
+
         return await context.SaveChangesAsync(cancellationToken) > 0;
     }
 }
