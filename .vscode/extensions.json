@@ -1,9 +1,0 @@
-{
-    "recommendations": [
-        "ms-dotnettools.csharp",
-        "ms-dotnettools.csdevkit",
-        "ms-dotnettools.vscodeintellicode-csharp",
-        "kreativ-software.csharpextensions",
-        "mygnet.vscode-anemona-task"
-    ]
-}
