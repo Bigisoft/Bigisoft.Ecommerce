@@ -1,5 +1,0 @@
-Creating a migration
-    dotnet ef migrations add InitialCreate -o Infrastructure\Data\Migrations
-
-Creating the tables
-    dotnet ef database update

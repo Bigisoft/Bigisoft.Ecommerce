@@ -16,8 +16,6 @@ src/**/.angular
 *.user
 *.userosscache
 *.sln.docstates
-JustStuffToRemember.txt
-TODO.txt
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

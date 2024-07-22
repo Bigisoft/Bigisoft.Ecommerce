@@ -13,6 +13,37 @@ Brief description of your project goes here.
 
 Provide step-by-step instructions on how to install and set up your project.
 
+## TODO
+
+- [ ] Category
+- [ ] Sub_Category
+- [ ] Product
+- [ ] Product_Images
+- [ ] Roles
+- [ ] Users
+- [ ] Product_Review
+- [ ] Wishlist
+- [ ] Cart
+- [ ] Contact
+- [ ] Payment
+- [ ] Order
+- [ ] Order_Details
+- [ ] Coupon
+
+## Migrations
+
+### Create Migration
+
+```sh
+dotnet ef migrations add InitialCreate -o Infrastructure\Data\Migrations
+```
+
+### Update Database
+
+```sh
+dotnet ef database update
+```
+
 ## Usage
 
 Explain how to use your project, include examples or screenshots if necessary.
