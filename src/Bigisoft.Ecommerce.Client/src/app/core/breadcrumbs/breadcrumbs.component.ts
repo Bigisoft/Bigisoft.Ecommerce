@@ -1,6 +1,8 @@
 import { NgIf, NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, ActivatedRoute, NavigationEnd, RouterModule } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 
@@ -11,26 +13,10 @@ interface Breadcrumbs {
 
 @Component({
   selector: 'app-breadcrumb',
-  imports: [RouterModule, NgIf, NgFor, MatGridListModule],
+  imports: [RouterModule, NgIf, NgFor, MatGridListModule, MatToolbarModule, MatCardModule],
   standalone: true,
-  styleUrl: './breadcrumbs.component.css',
-  template: `
-    <div class="breadcrumb ubuntu-regular">
-      <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = last">
-      <span *ngIf="!last">
-        <a [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a> /
-      </span>
-        <span *ngIf="last">{{ breadcrumb.label }}</span>
-      </ng-container>
-    </div>
-
-    <!--div class="breadcrumb ubuntu-regular">
-      <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = last">
-        <a [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
-        <span *ngIf="!last"> / </span>
-      </ng-container>
-    </div-->
-  `,
+  styleUrl: './breadcrumbs.component.scss',
+  templateUrl: './breadcrumbs.component.html',
 })
 export class BreadcrumbsComponent {
   breadcrumbs: Breadcrumbs[] = [];
@@ -69,34 +55,4 @@ export class BreadcrumbsComponent {
     }
     return newBreadcrumbs;
   }
-
-
-
-
-
-  /*buildBreadCrumb(route: ActivatedRoute, url: string = '', breadcrumbs: Breadcrumbs[] = []): Breadcrumbs[] {
-    // Add breadcrumb for the "Dashboard" route
-    if (breadcrumbs.length === 0) {
-      breadcrumbs.push({ label: 'Dashboard', url: '/dashboard' });
-    }
-
-    let label = route.routeConfig && route.routeConfig.data ? route.routeConfig.data['breadcrumb'] : '';
-    let path = route.routeConfig && route.routeConfig.path ? route.routeConfig.path : '';
-
-    // Check if the route has a resolved product
-    if (route.snapshot.data['product']) {
-      label = route.snapshot.data['product'].name; // Use the product name as the breadcrumb label
-    }
-
-    let nextUrl = path ? `${url}/${path}` : url;
-    let breadcrumb = {
-      label: label,
-      url: nextUrl
-    };
-    let newBreadcrumbs = label ? [...breadcrumbs, breadcrumb] : [...breadcrumbs];
-    if (route.firstChild) {
-      return this.buildBreadCrumb(route.firstChild, nextUrl, newBreadcrumbs);
-    }
-    return newBreadcrumbs;
-  }*/
 }

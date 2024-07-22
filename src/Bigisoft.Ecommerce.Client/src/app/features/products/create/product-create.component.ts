@@ -22,6 +22,7 @@ export class ProductCreateComponent implements OnInit {
 
   ngOnInit() {}
 
+
   onSubmit(form: NgForm) {
     const data: Product = form.value;
 
@@ -33,11 +34,20 @@ export class ProductCreateComponent implements OnInit {
         this.router.navigateByUrl('/products');
       },
       error: (error) => {
-        this.productSnackbarsService.ErrorSubmitOpenSnackBar();
-        console.error(error);
-        this.router.navigateByUrl('/products');
+        for(let err of this.objectValues(error))
+        {
+          if (err.errors && err.errors.Name && err.errors.Name[0]) {
+            console.error(err.errors.Name[0]);
+            this.productSnackbarsService.ErrorSubmitOpenSnackBar(err.errors.Name[0]);
+          }
+        }
+        //this.router.navigateByUrl('/products');
       }
     });
+  }
+
+  objectValues(obj: string): any[] {
+    return Object.values(obj);
   }
 }
 

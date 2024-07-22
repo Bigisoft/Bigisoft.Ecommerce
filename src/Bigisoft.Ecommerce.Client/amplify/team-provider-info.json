@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bigisoftecommercecli-dev-2839f-authRole",
+      "UnauthRoleArn": "arn:aws:iam::304450276926:role/amplify-bigisoftecommercecli-dev-2839f-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::304450276926:role/amplify-bigisoftecommercecli-dev-2839f-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-bigisoftecommercecli-dev-2839f-deployment",
+      "UnauthRoleName": "amplify-bigisoftecommercecli-dev-2839f-unauthRole",
+      "StackName": "amplify-bigisoftecommercecli-dev-2839f",
+      "StackId": "arn:aws:cloudformation:eu-central-1:304450276926:stack/amplify-bigisoftecommercecli-dev-2839f/fed39120-1e80-11ef-aad2-028c1709e285",
+      "AmplifyAppId": "d73dr5ffjlio3"
+    }
+  }
+}

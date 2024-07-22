@@ -38,11 +38,6 @@ public class ProductsController(IMediator mediator) : ControllerBase
     [HttpPut]
     public async Task<ActionResult<Product>> Update(int id, UpdateProductCommand command)
     {
-        if (id != command.Id)
-        {
-            return BadRequest();
-        }
-
         await mediator.Send(command);
         return NoContent();
     }

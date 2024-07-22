@@ -5,11 +5,46 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$ecommerce-client-primary: mat.define-palette(mat.$orange-palette);
-$ecommerce-client-accent: mat.define-palette(mat.$deep-orange-palette, A200, A100, A400);
-$ecommerce-client-warn: mat.define-palette(mat.$red-palette);
+
+$ecommerce-client-primary: mat.define-palette(mat.$teal-palette);
+$ecommerce-client-accent: mat.define-palette(mat.$deep-orange-palette);
+$ecommerce-client-tertiary: mat.define-palette(mat.$teal-palette);
 
 $primary-color: mat.get-color-from-palette($ecommerce-client-primary, default);
-$accent-color: mat.get-color-from-palette($ecommerce-client-accent, default);
-$warn-color: mat.get-color-from-palette($ecommerce-client-warn, default);
+$accent-color: mat.get-color-from-palette($ecommerce-client-accent, 500);//mat.$amber-palette;
+$tertiary-color: mat.get-color-from-palette($ecommerce-client-tertiary, 200);//mat.$cyan-palette;
+
+// Light theme configuration
+$light-theme: mat.define-light-theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.get-color-from-palette(mat.$cyan-palette, 500),
+        accent: $accent-color,
+        tertiary: $tertiary-color,
+      ),
+      $primary-color: mat.get-color-from-palette(mat.$cyan-palette, 500),
+    )
+);
+
+// Dark theme configuration
+$dark-theme: mat.define-dark-theme(
+    (
+      color: (
+        theme-type: dark,
+        primary: $primary-color,
+        accent: $accent-color,
+        tertiary: $tertiary-color,
+      ),
+    )
+);
+
+
+//$ecommerce-client-primary: mat.define-palette(mat.$orange-palette);
+//$ecommerce-client-accent: mat.define-palette(mat.$deep-orange-palette, A200, A100, A400);
+//$ecommerce-client-warn: mat.define-palette(mat.$red-palette);
+//
+//$primary-color: mat.get-color-from-palette($ecommerce-client-primary, default);
+//$accent-color: mat.get-color-from-palette($ecommerce-client-accent, default);
+//$warn-color: mat.get-color-from-palette($ecommerce-client-warn, default);
 

@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { SharedService } from '../../shared.service';
 import { SidenavComponent } from '../sidenav/sidenav.component';
+import {SidenavService} from "../sidenav/sidebar.service";
 
 @Component({
   selector: 'app-header',
@@ -13,9 +14,9 @@ import { SidenavComponent } from '../sidenav/sidenav.component';
   imports: [MatToolbarModule, MatButtonModule, MatIconModule, SidenavComponent],
 })
 export class HeaderComponent {
-  constructor(private sharedService: SharedService) { }
+  constructor(private sidenavService: SidenavService) {}
 
   toggleSidenav() {
-    this.sharedService.toggleSidenav();
+    this.sidenavService.toggleSidenav();
   }
 }

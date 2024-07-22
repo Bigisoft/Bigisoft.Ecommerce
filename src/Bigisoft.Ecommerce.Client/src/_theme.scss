@@ -1,6 +1,7 @@
 ﻿@use '@angular/material' as mat;
 @use 'variables' as vars;
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import '@aws-amplify/ui/dist/styles.css';
 
 .ubuntu-light {
     font-family: "Ubuntu", sans-serif;
@@ -52,6 +53,7 @@
 
 
 
+
 $custom-typography: mat.define-typography-config(
   $font-family: '"Ubuntu", sans-serif',
 );
@@ -59,20 +61,37 @@ $custom-typography: mat.define-typography-config(
 // Define a dark theme
 $dark-theme: mat.define-dark-theme((
   color: (
+    theme-type: dark,
     primary: vars.$ecommerce-client-primary,
     accent: vars.$ecommerce-client-accent,
-    warn: vars.$ecommerce-client-warn
+    tertiary: vars.$ecommerce-client-tertiary
   ),
+  typography: (
+    brand-family: 'Comic Sans',
+    bold-weight: 900
+  ),
+  density: (
+    scale: -1
+  ),
+
   // Only include `typography` and `density` in the default dark theme.
-  typography: $custom-typography,
-  density: 0,
+  //typography: $custom-typography,
+  //density: 0,
 ));
 
 // Define a light theme
 $light-theme: mat.define-light-theme((
   color: (
+    theme-type: light,
     primary: vars.$ecommerce-client-primary,
     accent: vars.$ecommerce-client-accent,
-    warn: vars.$ecommerce-client-warn
+    tertiary: vars.$ecommerce-client-tertiary
+  ),
+  typography: (
+    brand-family: 'Comic Sans',
+    bold-weight: 900
+  ),
+  density: (
+    scale: -1
   ),
 ));

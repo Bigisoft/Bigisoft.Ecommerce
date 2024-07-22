@@ -763,3 +763,4 @@ $RECYCLE.BIN/
 # VS Code
 inspectcode.xml
 qodana.yaml
+/src/Bigisoft.Ecommerce.Client/src/app/environments/

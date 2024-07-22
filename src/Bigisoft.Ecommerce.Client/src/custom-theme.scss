@@ -1,43 +1,189 @@
 /* You can add global styles to this file, and also import other style files */
+@use 'sass:map';
 @use '@angular/material' as mat;
 @use 'theme' as theme;
 @use 'variables' as vars;
 @include mat.core();
 
-html, body {
-    margin: 0;
-    height: 100%;
-    color: #cecece;
-    font-size: 14px !important;
-}
-
 // Apply the dark theme by default
 @include mat.all-component-themes(theme.$dark-theme);
 @include mat.all-component-typographies(theme.$custom-typography);
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-size: 14px !important;
+}
+
 
 // Apply the light theme only when the user prefers light themes.
 @media (prefers-color-scheme: light) {
   // Use the `-color` mixins to only apply color styles without reapplying the same
   // typography and density styles.
+  html, body {
+    color: #{mat.get-color-from-palette(mat.$light-theme-foreground-palette, text)};
+  }
+
+  a {
+    & {
+      color: #{vars.$primary-color};
+      text-shadow: 0 1px 1px #000;
+      text-decoration: underline dotted;
+    }
+    &:hover {
+      color: #{vars.$tertiary-color};
+      text-shadow: 0 1px 2px #000;
+      text-decoration: underline;
+    }
+    &:active {
+      color: #{vars.$accent-color};
+    }
+  }
+
+  table {
+    th {
+      background-color: rgba(0, 0, 0, 0.15) !important;
+      color: vars.$primary-color;
+    }
+  }
+
+  :root{
+    --amplify-colors-border-primary: #{mat.get-color-from-palette(mat.$grey-palette, 300)};
+    --amplify-colors-background-primary: #{mat.get-color-from-palette(mat.$grey-palette, A100)};
+    --amplify-colors-font-primary: #{mat.get-color-from-palette(mat.$light-theme-foreground-palette, text)};
+    --amplify-colors-font-secondary:	#{vars.$tertiary-color};
+  }
+
   @include mat.all-component-colors(theme.$light-theme);
 }
 
-table {
-  th {
-    background-color: rgba(0,0,0,0.15) !important;
-    color: vars.$primary-color;
+@media (prefers-color-scheme: dark) {
+  // Use the `-color` mixins to only apply color styles without reapplying the same
+  // typography and density styles.
+  html, body {
+    color: #{mat.get-color-from-palette(mat.$dark-theme-foreground-palette, text)};
   }
+
+  a {
+    & {
+      color: #{vars.$primary-color};
+      text-shadow: 0 1px 1px #000;
+      text-decoration: underline dotted;
+    }
+    &:hover {
+      color: #{vars.$tertiary-color};
+      text-shadow: 0 1px 2px #000;
+      text-decoration: underline;
+    }
+    &:active {
+      color: #{vars.$accent-color};
+    }
+  }
+
+  table {
+      th {
+        background-color: rgba(0,0,0,0.15) !important;
+        color: vars.$primary-color;
+      }
+    }
+
+  :root{
+    --amplify-colors-border-primary: #{mat.get-color-from-palette(mat.$grey-palette, 700)};
+    --amplify-colors-background-primary: #{mat.get-color-from-palette(mat.$grey-palette, 800)};
+    --amplify-colors-font-primary: #{mat.get-color-from-palette(mat.$dark-theme-foreground-palette, text)};
+    --amplify-colors-font-secondary:	#{vars.$tertiary-color};
+    --amplify-components-button-primary-hover-background-color: #{vars.$tertiary-color};
+    --amplify-components-button-primary-active-background-color: #{vars.$accent-color};
+  }
+
+  //@include mat.all-component-colors(theme.$dark-theme);
 }
 
-a {
-  & {
-    color: vars.$primary-color;
-    text-shadow: 1px 1px 1px #000;
-    text-decoration: none;
-  }
-  &:hover {
-    color: vars.$accent-color;
-    text-shadow: 1px 1px 2px #000;
-    text-decoration: underline;
-  }
+
+:root {
+  --amplify-colors-red-10: hsl(0, 100%, 15%);
+  --amplify-colors-red-20: hsl(0, 100%, 20%);
+  --amplify-colors-red-40: hsl(0, 95%, 30%);
+  --amplify-colors-red-80: hsl(0, 75%, 75%);
+  --amplify-colors-red-90: hsl(0, 75%, 85%);
+  --amplify-colors-red-100: hsl(0, 75%, 95%);
+  --amplify-colors-orange-10: hsl(30, 100%, 15%);
+  --amplify-colors-orange-20: hsl(30, 100%, 20%);
+  --amplify-colors-orange-40: hsl(30, 95%, 30%);
+  --amplify-colors-orange-80: hsl(30, 75%, 75%);
+  --amplify-colors-orange-90: hsl(30, 75%, 85%);
+  --amplify-colors-orange-100: hsl(30, 75%, 95%);
+  --amplify-colors-yellow-10: hsl(60, 100%, 15%);
+  --amplify-colors-yellow-20: hsl(60, 100%, 20%);
+  --amplify-colors-yellow-40: hsl(60, 95%, 30%);
+  --amplify-colors-yellow-80: hsl(60, 75%, 75%);
+  --amplify-colors-yellow-90: hsl(60, 75%, 85%);
+  --amplify-colors-yellow-100: hsl(60, 75%, 95%);
+  --amplify-colors-green-10: hsl(130, 22%, 23%);
+  --amplify-colors-green-20: hsl(130, 27%, 29%);
+  --amplify-colors-green-40: hsl(130, 33%, 37%);
+  --amplify-colors-green-80: hsl(130, 44%, 63%);
+  --amplify-colors-green-90: hsl(130, 60%, 90%);
+  --amplify-colors-green-100: hsl(130, 60%, 95%);
+  --amplify-colors-teal-10: hsl(190, 100%, 15%);
+  --amplify-colors-teal-20: hsl(190, 100%, 20%);
+  --amplify-colors-teal-40: hsl(190, 95%, 30%);
+  --amplify-colors-teal-80: hsl(190, 70%, 70%);
+  --amplify-colors-teal-90: hsl(190, 75%, 85%);
+  --amplify-colors-teal-100: hsl(190, 75%, 95%);
+  --amplify-colors-blue-10: hsl(220, 100%, 15%);
+  --amplify-colors-blue-20: hsl(220, 100%, 20%);
+  --amplify-colors-blue-40: hsl(220, 95%, 30%);
+  --amplify-colors-blue-80: hsl(220, 70%, 70%);
+  --amplify-colors-blue-90: hsl(220, 85%, 85%);
+  --amplify-colors-blue-100: hsl(220, 95%, 95%);
+  --amplify-colors-purple-10: hsl(300, 100%, 15%);
+  --amplify-colors-purple-20: hsl(300, 100%, 20%);
+  --amplify-colors-purple-40: hsl(300, 95%, 30%);
+  --amplify-colors-purple-80: hsl(300, 70%, 70%);
+  --amplify-colors-purple-90: hsl(300, 85%, 85%);
+  --amplify-colors-purple-100: hsl(300, 95%, 95%);
+  --amplify-colors-pink-10: hsl(340, 100%, 15%);
+  --amplify-colors-pink-20: hsl(340, 100%, 20%);
+  --amplify-colors-pink-40: hsl(340, 95%, 30%);
+  --amplify-colors-pink-80: hsl(340, 70%, 70%);
+  --amplify-colors-pink-90: hsl(340, 90%, 85%);
+  --amplify-colors-pink-100: hsl(340, 95%, 95%);
+  --amplify-colors-overlay-10: hsla(0, 0%, 100%, 0.1);
+  --amplify-colors-overlay-20: hsla(0, 0%, 100%, 0.2);
+  --amplify-colors-overlay-30: hsla(0, 0%, 100%, 0.3);
+  --amplify-colors-overlay-40: hsla(0, 0%, 100%, 0.4);
+  --amplify-colors-overlay-50: hsla(0, 0%, 100%, 0.5);
+  --amplify-colors-overlay-60: hsla(0, 0%, 100%, 0.6);
+  --amplify-colors-overlay-70: hsla(0, 0%, 100%, 0.7);
+  --amplify-colors-overlay-80: hsla(0, 0%, 100%, 0.8);
+  --amplify-colors-overlay-90: hsla(0, 0%, 100%, 0.9);
+  //--amplify-colors-black: #fff;
+  //--amplify-colors-white: #303030;
+  //--amplify-colors-border-primary: var(--amplify-colors-neutral-30);
+  //--amplify-colors-border-secondary: var(--amplify-colors-neutral-20);
+  //--amplify-colors-border-tertiary: var(--amplify-colors-neutral-10);
+  //--amplify-colors-background-primary: #{vars.$primary-color};
+  /*--amplify-components-button-color: #{vars.$primary-color};
+  --amplify-components-button-active-border-color: transparent;
+  --amplify-components-button-active-color: #dadada;
+  --amplify-components-button-active-background-color: #{vars.$accent-color};
+  --amplify-components-button-hover-border-color: transparent;
+  --amplify-components-button-hover-color: #{vars.$accent-color};
+  --amplify-components-button-hover-background-color: var(--amplify-colors-orange-80);
+
+  --amplify-components-button-primary-background-color: #{vars.$primary-color};
+  --amplify-components-button-primary-color: #ededed;
+  --amplify-components-button-primary-active-background-color: #{vars.$accent-color};
+  --amplify-components-button-primary-active-color: #dadada;
+  --amplify-components-button-primary-hover-background-color: var(--amplify-colors-orange-80);
+  --amplify-components-button-primary-hover-color: #{vars.$accent-color};
+  --amplify-components-collection-pagination-button-color: red;*/
+
+  --amplify-colors-primary-10: #{vars.$primary-color};//var(--amplify-colors-blue-10);   /* Dark base */
+  --amplify-colors-primary-20: #{vars.$accent-color};//var(--amplify-colors-teal-20);   /* Secondary accent */
+  --amplify-colors-primary-40: #{vars.$tertiary-color};//var(--amplify-colors-orange-40); /* Mid-tone */
+  --amplify-colors-primary-80: #{vars.$primary-color};//var(--amplify-colors-green-80);  /* Lighter shade */
+  --amplify-colors-primary-90: #{vars.$accent-color};//#{vars.$accent-color};//var(--amplify-colors-blue-90);   /* Lightest accent */
 }
+

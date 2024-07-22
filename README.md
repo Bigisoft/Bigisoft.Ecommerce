@@ -1,6 +1,6 @@
-# Project Name
+# Bigisoft.Ecommerce
 
-Brief description of your project goes here.
+Brief description of the project goes here.
 
 ## Table of Contents
 

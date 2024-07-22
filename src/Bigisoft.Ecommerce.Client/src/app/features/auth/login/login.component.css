@@ -1,0 +1,6 @@
+.auth-container {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items */
+  gap: 20px; /* Space between form and card */
+}

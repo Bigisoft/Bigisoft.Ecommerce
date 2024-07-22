@@ -1,39 +1,24 @@
-.example-container {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
+.sidenav-container {
+  height: calc(100vh - 65px);
 }
 
-.example-is-mobile .example-toolbar {
-  position: fixed;
-  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-  z-index: 50;
+mat-sidenav {
+  width: 200px;
+  /*background: rgba(56,56,54,0.84);*/
 }
 
-.example-sidenav-container {
-  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
-     min-height: 100vh;
-     min-width: 100vw;
-     position: absolute;
+mat-sidenav-content {
+  position:relative;
+  padding: 20px;
 }
 
-.example-is-mobile .example-sidenav-container {
-  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
-     `<body>` to be our scrolling element for mobile layouts. */
-
-     flex: 1 0 auto;
+@media (max-width: 768px) {
+  mat-sidenav {
+    width: 100vw;
+  }
 }
 
 .active {
   background: rgb(87, 87, 87);
 }
 
-.mat-drawer-opened {
-    background: rgba(0,0,0,0.30) !important;
-}
-@media screen and (max-width: 600px) {
-    .mat-drawer-opened {
-        background: rgba(0,0,0,0.70) !important;
-    }
-}
