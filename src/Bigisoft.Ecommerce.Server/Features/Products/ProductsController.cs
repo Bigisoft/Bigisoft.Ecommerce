@@ -18,7 +18,7 @@ public class ProductsController(IMediator mediator) : ControllerBase
     [HttpGet("{id:int}")]
     public async Task<ActionResult<Product?>> GetById(int id)
     {
-        var product = await mediator.Send(new GetAllProductByIdQuery(id));
+        var product = await mediator.Send(new GetProductByIdQuery(id));
 
         if (product is null)
         {
@@ -29,57 +29,27 @@ public class ProductsController(IMediator mediator) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] Product request)
+    public async Task<IActionResult> Create([FromBody] CreateProductCommand command)
     {
-        try
-        {
-            var product = await mediator.Send(new CreateProductCommand(request.Name));
-            return Ok(product);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"An error occurred: {ex.Message}");
-        }
+        return Ok(await mediator.Send(command));
     }
 
     [HttpPut]
-    public async Task<ActionResult<Product>> Update(UpdateProductCommand request)
+    public async Task<ActionResult<Product>> Update(int id, UpdateProductCommand command)
     {
-        try
+        if (id != command.Id)
         {
-            var product = await mediator.Send(request);
-
-            if (product is null)
-            {
-                return NotFound();
-            }
-
-            return Ok(product);
+            return BadRequest();
         }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"An error occurred: {ex.Message}");
-        }
+
+        await mediator.Send(command);
+        return NoContent();
     }
 
     [HttpDelete("{id:int}")]
     public async Task<ActionResult<bool>> Delete(int id)
     {
-        try
-        {
-            var command = new DeleteProductCommand(id);
-            var product = await mediator.Send(command);
-            if (!product)
-            {
-                return NotFound();
-            }
-
-            // Return a success response
-            return NoContent();
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"An error occurred: {ex.Message}");
-        }
+        await mediator.Send(new DeleteProductCommand(id));
+        return NoContent();
     }
 }

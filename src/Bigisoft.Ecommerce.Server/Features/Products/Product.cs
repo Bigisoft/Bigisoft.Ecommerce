@@ -1,7 +1,8 @@
+using Bigisoft.Ecommerce.Server.Common.Domain;
+
 namespace Bigisoft.Ecommerce.Server.Features.Products;
 
-public class Product
+public class Product : BaseEntity
 {
-    public int Id { get; set; } = default!;
     public required string Name { get; set; }
 }

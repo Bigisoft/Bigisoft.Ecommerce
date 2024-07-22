@@ -1,23 +1,24 @@
+using Bigisoft.Ecommerce.Server.Common.Exceptions;
 using Bigisoft.Ecommerce.Server.Infrastructure.Data;
 using MediatR;
 
 namespace Bigisoft.Ecommerce.Server.Features.Products.Commands;
 
-public sealed record DeleteProductCommand(int Id) : IRequest<bool>;
+public sealed record DeleteProductCommand(int Id) : IRequest;
 
-public sealed class DeleteProductCommandHandler(EcommerceDbContext context) : IRequestHandler<DeleteProductCommand, bool>
+public sealed class DeleteProductCommandHandler(EcommerceDbContext context) : IRequestHandler<DeleteProductCommand>
 {
-    public async Task<bool> Handle(DeleteProductCommand? request, CancellationToken cancellationToken)
+    public async Task Handle(DeleteProductCommand request, CancellationToken cancellationToken)
     {
-        if (request != null)
-        {
-            var product = await context.Products.FindAsync(request.Id, cancellationToken);
-        
-            if (product == null) return false;
+        var product = await context.Products.FindAsync([request.Id], cancellationToken);
 
-            context.Products.Remove(product);
+        if (product == null)
+        {
+            throw new NotFoundException(request.Id.ToString(), nameof(Product));
         }
 
-        return await context.SaveChangesAsync(cancellationToken) > 0;
+        context.Products.Remove(product);
+
+        await context.SaveChangesAsync(cancellationToken);
     }
 }

@@ -10,7 +10,7 @@ const PROXY_CONFIG = [
       "/api/products",
     ],
     target,
-    secure: true
+    secure: false
   }
 ]
 

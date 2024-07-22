@@ -1,43 +1,49 @@
-using Bigisoft.Ecommerce.Server.Features.Products.Commands;
 using Bigisoft.Ecommerce.Server.Infrastructure;
 using Bigisoft.Ecommerce.Server.Infrastructure.Data;
-using Bigisoft.Ecommerce.Server.Infrastructure.Middlewares;
-using FluentValidation;
-using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Bigisoft.Ecommerce.Server.Infrastructure.Interceptors;
+using FluentValidation;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<EcommerceDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("WinAuth")));
+builder.Services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
+builder.Services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
+builder.Services.AddDbContext<EcommerceDbContext>((serviceProvider, options) =>
+{
+    options.AddInterceptors(serviceProvider.GetServices<ISaveChangesInterceptor>());
+    options.UseSqlServer(builder.Configuration.GetConnectionString("WinAuth"));
+});
 
-// Add services to the container.
-builder.Services.AddControllers();
-builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
+builder.Services.AddSingleton(TimeProvider.System);
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
 builder.Services.AddMediatR(cfg => {
     cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-    cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+    cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 });
-builder.Services.AddValidatorsFromAssemblyContaining<ProductValidator>();
+
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
 app.UseDefaultFiles();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseExceptionHandler(options => { });
 
 app.MapControllers();
 

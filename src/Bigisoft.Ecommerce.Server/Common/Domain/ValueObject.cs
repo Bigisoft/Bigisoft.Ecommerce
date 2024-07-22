@@ -1,50 +1,51 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+namespace Bigisoft.Ecommerce.Server.Common.Domain;
 
-namespace Bigisoft.Ecommerce.Server.Common.Domain
+/// <summary>
+/// An abstract base class for value objects in domain-driven design (DDD).
+/// Value objects are immutable and are defined purely by their attributes, without a conceptual identity.
+/// Equality between two value objects is determined based on the equality of their attributes.
+/// </summary>
+public abstract class ValueObject : IEquatable<ValueObject>
 {
-    public abstract class ValueObject
+    public virtual bool Equals(ValueObject? other)
     {
-        protected static bool EqualOperator(ValueObject left, ValueObject right)
-        {
-            if (left is null ^ right is null)
-            {
-                return false;
-            }
+        return other is not null && ValuesAreEqual(other);
+    }
 
-            return left?.Equals(right!) != false;
+    public static bool operator ==(ValueObject? a, ValueObject? b)
+    {
+        if (a is null && b is null)
+        {
+            return true;
         }
 
-        protected static bool NotEqualOperator(ValueObject left, ValueObject right)
+        if (a is null || b is null)
         {
-            return !(EqualOperator(left, right));
+            return false;
         }
 
-        protected abstract IEnumerable<object> GetEqualityComponents();
+        return a.Equals(b);
+    }
 
-        public override bool Equals(object? obj)
-        {
-            if (obj == null || obj.GetType() != GetType())
-            {
-                return false;
-            }
+    public static bool operator !=(ValueObject? a, ValueObject? b)
+    {
+        return !(a == b);
+    }
 
-            var other = (ValueObject)obj;
-            return GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
-        }
+    public override bool Equals(object? obj)
+    {
+        return obj is ValueObject valueObject && ValuesAreEqual(valueObject);
+    }
 
-        public override int GetHashCode()
-        {
-            var hash = new HashCode();
+    public override int GetHashCode()
+    {
+        return GetAtomicValues().Aggregate(default(int), (hashcode, value) => HashCode.Combine(hashcode, value.GetHashCode()));
+    }
 
-            foreach (var component in GetEqualityComponents())
-            {
-                hash.Add(component);
-            }
+    protected abstract IEnumerable<object> GetAtomicValues();
 
-            return hash.ToHashCode();
-        }
+    private bool ValuesAreEqual(ValueObject valueObject)
+    {
+        return GetAtomicValues().SequenceEqual(valueObject.GetAtomicValues());
     }
 }

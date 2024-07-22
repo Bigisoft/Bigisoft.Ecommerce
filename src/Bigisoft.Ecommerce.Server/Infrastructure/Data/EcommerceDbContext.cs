@@ -2,14 +2,10 @@ using Bigisoft.Ecommerce.Server.Features.Products;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bigisoft.Ecommerce.Server.Infrastructure.Data;
-public class EcommerceDbContext : DbContext
+public class EcommerceDbContext(DbContextOptions<EcommerceDbContext> options) : DbContext(options)
 {
     public DbSet<Product> Products { get; set; }
-    public EcommerceDbContext(DbContextOptions<EcommerceDbContext> options) : base(options)
-    {
 
-    }
-    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

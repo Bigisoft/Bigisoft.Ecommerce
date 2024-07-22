@@ -8,15 +8,11 @@ public sealed class ProductCreatedEvent(Product product) : BaseEvent
     public Product Product { get; } = product;
 }
 
-public sealed class ProductCreatedEventHandler : INotificationHandler<ProductCreatedEvent>
+public sealed class ProductCreatedEventHandler(ILogger<ProductCreatedEventHandler> logger) : INotificationHandler<ProductCreatedEvent>
 {
-    private readonly ILogger<ProductCreatedEventHandler> _logger;
-
-    public ProductCreatedEventHandler(ILogger<ProductCreatedEventHandler> logger) => _logger = logger;
-
     public Task Handle(ProductCreatedEvent notification, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Domain Event: {DomainEvent}", notification.GetType().Name);
+        logger.LogInformation("Domain Event: {DomainEvent}", notification.GetType().Name);
 
         return Task.CompletedTask;
     }

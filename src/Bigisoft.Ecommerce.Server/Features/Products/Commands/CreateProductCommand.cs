@@ -1,3 +1,4 @@
+using Bigisoft.Ecommerce.Server.Features.Products.Events;
 using Bigisoft.Ecommerce.Server.Infrastructure.Data;
 using MediatR;
 
@@ -9,14 +10,17 @@ public sealed class CreateProductCommandHandler(EcommerceDbContext context) : IR
 {
     public async Task<int> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
-        var entity = new Product
+        var product = new Product
         {
             Name = request.Name
         };
 
-        context.Products.Add(entity);
+        product.AddDomainEvent(new ProductCreatedEvent(product));
+
+        context.Products.Add(product);
+
         await context.SaveChangesAsync(cancellationToken);
 
-        return entity.Id;
+        return product.Id;
     }
 }

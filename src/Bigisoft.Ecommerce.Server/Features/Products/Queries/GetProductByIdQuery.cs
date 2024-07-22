@@ -3,18 +3,13 @@ using MediatR;
 
 namespace Bigisoft.Ecommerce.Server.Features.Products.Queries;
 
-public sealed record GetAllProductByIdQuery(int Id) : IRequest<Product?>;
+public sealed record GetProductByIdQuery(int Id) : IRequest<Product?>;
 
-public sealed record GetAllProductByIdQueryHandler : IRequestHandler<GetAllProductByIdQuery, Product?>
+public sealed class GetProductByIdQueryHandler(EcommerceDbContext dbContext) : IRequestHandler<GetProductByIdQuery, Product?>
 {
-    private readonly EcommerceDbContext _dbContext;
-
-
-    public GetAllProductByIdQueryHandler(EcommerceDbContext dbContext) => _dbContext = dbContext;
-
-    public async Task<Product?> Handle(GetAllProductByIdQuery request, CancellationToken cancellationToken)
+    public async Task<Product?> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
     {
-        var product = await _dbContext.Products.FindAsync(request.Id);
+        var product = await dbContext.Products.FindAsync([request.Id], cancellationToken);
         return product;
     }
 }
