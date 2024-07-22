@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -8,6 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {AuthService} from "../../auth/AuthService";
+import { NgIf } from '@angular/common';
 
 export interface Tile {
   color: string;
@@ -22,10 +24,16 @@ export interface Tile {
   templateUrl: './grid.component.html',
   styleUrl: './grid.component.css',
   standalone: true,
-  imports: [MatGridListModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatProgressSpinnerModule],
+  imports: [NgIf, MatGridListModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatProgressSpinnerModule],
 })
-export class GridComponent {
-  constructor(private _snackBar: MatSnackBar) { }
+export class GridComponent implements OnInit {
+  isAuthenticated: boolean = false;
+
+  constructor(private _snackBar: MatSnackBar, public amplifyAuthService: AuthService) { }
+
+  async ngOnInit(){
+    this.isAuthenticated = await this.amplifyAuthService.isAuthenticated();
+  }
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);

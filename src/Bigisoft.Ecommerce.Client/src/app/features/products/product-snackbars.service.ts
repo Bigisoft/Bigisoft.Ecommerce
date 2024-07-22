@@ -13,7 +13,9 @@ export class ProductSnackbarsService {
     });
   }
 
-  ErrorSubmitOpenSnackBar() {
+  ErrorSubmitOpenSnackBar(nameElement: string) {
+    ErrorSubmitSnackComponent.prototype.setErrorText(nameElement);
+
     this._snackBar.openFromComponent(ErrorSubmitSnackComponent, {
       duration: this.durationInSeconds * 1000,
     });
@@ -70,13 +72,19 @@ export class SuccessfulSubmitSnackComponent {}
   `,
   template: `
     <span class="error-submit-snack">
-      There was an error while adding the product!
+      {{errText}}
+      <!--There was an error while adding the product!-->
     </span>
 
   `,
   standalone: true,
 })
-export class ErrorSubmitSnackComponent {}
+export class ErrorSubmitSnackComponent {
+  protected errText: string | undefined;
+  setErrorText(errTxt: string) {
+    this.errText = errTxt;
+  }
+}
 
 @Component({
   selector: 'successful-delete-snack-component',

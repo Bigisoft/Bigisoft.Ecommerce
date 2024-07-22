@@ -1,0 +1,13 @@
+<ng-container *ngIf="product">
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+
+    <input type="hidden" name="id" [(ngModel)]="product.id" ngModel>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput type="text" name="name" [(ngModel)]="product.name" >
+    </mat-form-field>
+
+    <br>
+    <button mat-raised-button type="submit">Submit</button>
+  </form>
+</ng-container>

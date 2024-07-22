@@ -19,7 +19,7 @@ public class AuditableEntityInterceptor(TimeProvider dateTime) : SaveChangesInte
         return base.SavingChangesAsync(eventData, result, cancellationToken);
     }
 
-    public void UpdateEntities(DbContext? context)
+    private void UpdateEntities(DbContext? context)
     {
         if (context == null)
         {

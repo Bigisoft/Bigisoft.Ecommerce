@@ -1,12 +1,9 @@
 import { NgIf, NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
-import { ActivatedRoute, ActivationEnd, Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { Product } from "../product";
 import { ProductService } from "../product.service";
-import { filter } from 'rxjs';
-
-
 
 @Component({
   selector: 'app-products',
@@ -16,10 +13,9 @@ import { filter } from 'rxjs';
   imports: [NgIf, NgFor, MatTableModule, RouterModule]
 })
 export class ProductsComponent implements OnInit {
-  isChildRouteActive = false;
   public products: Product[] = [];
 
-  constructor(private productService: ProductService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(){
     this.getProducts();
@@ -37,5 +33,5 @@ export class ProductsComponent implements OnInit {
   }
 
 
-  displayedColumns: string[] = ['id', 'name', 'update', 'delete'];
+  displayedColumns: string[] = ['id', 'name', 'edit', 'delete'];
 }

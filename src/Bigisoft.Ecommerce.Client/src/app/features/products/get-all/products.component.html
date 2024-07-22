@@ -16,9 +16,9 @@
   </ng-container>
 
   <!-- Update btn Column -->
-  <ng-container matColumnDef="update">
+  <ng-container matColumnDef="edit">
     <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let element"> <a mat-raised-button [routerLink]="['/products/update/', element.id]">Update</a> </td>
+    <td mat-cell *matCellDef="let element"> <a mat-raised-button [routerLink]="['/products/edit/', element.id]">Edit</a> </td>
   </ng-container>
 
   <!-- Delete btn Column -->
