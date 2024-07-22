@@ -754,10 +754,13 @@ $RECYCLE.BIN/
 # Windows Installer files from build outputs
 
 # JetBrains Rider
+.idea/
 
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,csharp,visualstudio,visualstudiocode,rider,intellij+all
 
-
+# VS Code
+inspectcode.xml
+qodana.yaml
