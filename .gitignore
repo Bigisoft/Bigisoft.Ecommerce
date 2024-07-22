@@ -755,6 +755,7 @@ $RECYCLE.BIN/
 
 # JetBrains Rider
 .idea/
+*.DotSettings.user
 
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
