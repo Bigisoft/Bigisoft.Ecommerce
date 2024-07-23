@@ -1,4 +1,5 @@
 using Bigisoft.Ecommerce.Server.Common.Exceptions;
+using Bigisoft.Ecommerce.Server.Features.Products.Domain;
 using Bigisoft.Ecommerce.Server.Infrastructure.Data;
 using MediatR;
 

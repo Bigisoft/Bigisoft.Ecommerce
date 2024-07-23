@@ -1,7 +1,7 @@
 using Bigisoft.Ecommerce.Server.Common.Domain;
 using MediatR;
 
-namespace Bigisoft.Ecommerce.Server.Features.Products.Events;
+namespace Bigisoft.Ecommerce.Server.Features.Products.Domain.Events;
 
 public sealed class ProductCreatedEvent(Product product) : BaseEvent
 {

@@ -1,4 +1,5 @@
 using Bigisoft.Ecommerce.Server.Features.Products.Commands;
+using Bigisoft.Ecommerce.Server.Features.Products.Domain;
 using Bigisoft.Ecommerce.Server.Features.Products.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
